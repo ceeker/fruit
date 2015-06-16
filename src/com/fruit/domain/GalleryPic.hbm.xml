@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-4 19:10:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.GalleryPic" table="GALLERYPIC">
+        <id name="galleryPicId" type="java.lang.String">
+            <column name="GALLERYPICID" />
+            <generator class="assigned" />
+        </id>
+        <property name="galleryPicTitle" type="java.lang.String">
+            <column name="GALLERYPICTITLE" />
+        </property>
+        <property name="galleryPicInfo" type="java.lang.String">
+            <column name="GALLERYPICINFO" />
+        </property>
+        <property name="galleryPicAddr" type="java.lang.String">
+            <column name="GALLERYPICADDR" />
+        </property>
+        <property name="galleryPicHref" type="java.lang.String">
+            <column name="GALLERYPICHREF" />
+        </property>
+    </class>
+</hibernate-mapping>

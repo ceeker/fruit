@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-4 19:12:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Advertisement" table="ADVERTISEMENT">
+        <id name="advertisementId" type="java.lang.String">
+            <column name="ADVERTISEMENTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="advertisementTitle" type="java.lang.String">
+            <column name="ADVERTISEMENTTITLE" />
+        </property>
+        <property name="advertisementInfo" type="java.lang.String">
+            <column name="ADVERTISEMENTINFO" />
+        </property>
+        <property name="advertisementPicAddr" type="java.lang.String">
+            <column name="ADVERTISEMENTPICADDR" />
+        </property>
+        <property name="advertisementHref" type="java.lang.String">
+            <column name="ADVERTISEMENTHREF" />
+        </property>
+    </class>
+</hibernate-mapping>

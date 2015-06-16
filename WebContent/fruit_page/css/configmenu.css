@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+#content
+{
+	padding-bottom:80px;
+}
+#menu_bar{
+	margin:0 auto;
+	width:1000px;
+	
+	}
+#menu_count	{
+	margin:0 auto;
+	width:1000px;
+	height:auto;
+	}
+#menu_count td{ height:36px; border:1px #CCC solid; font-size:14px; font-family:Georgia, "Times New Roman", Times, serif; text-align:center; f}
+#menu_counth{ background:#693;font-weight:600;}	
+#menuheader{
+	height:80px;width:900px;
+	margin:0 auto;
+	background-color:#FFF;
+	}
+	
+.menutitle{
+  width:100px;
+  height:60px;
+  position:relative;
+  left:85px;
+  top:-60px;
+  font-size:24px;
+  font-weight:800;
+   
+   
+	}	
+	
+	#menubg{
+		width:414px;
+		height:60px;
+		background:url(../img/carting.jpg) no-repeat 0 -70px;
+		position:relative;
+       left:320px;
+       top:-135px;
+       font-size:24px;
+       font-weight:800;
+		}
+	#menucount{
+	margin:0 auto;
+	width:900px;
+	height:380px;
+	background-color:#FFF;
+	margin-top:5px;
+	
+		
+		}	
+		
+
+.inputstyle{
+	height:30px; width:230px;margin-right:10px;}	
+#anniu{cursor:pointer; width:90px; height:34px; background:#693; font-size:14px; font-family:Georgia, "Times New Roman", Times, serif; font-weight:600; color:#FFF; float:right; margin-right:5px;}
+#ordersubmit{cursor:pointer; width:90px; height:34px; background:#693; font-size:14px; font-family:Georgia, "Times New Roman", Times, serif; font-weight:600; color:#FFF;float:right; margin-right:5px;}

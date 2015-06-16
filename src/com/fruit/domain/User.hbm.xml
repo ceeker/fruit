@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-7-26 17:41:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.User" table="USER">
+        <id name="userId" type="java.lang.String">
+            <column name="USERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="userSex" type="java.lang.String">
+            <column name="USERSEX" />
+        </property>
+        <property name="userPassword" type="java.lang.String">
+            <column name="USERPASSWORD" />
+        </property>
+        <property name="userPhone" type="java.lang.String">
+            <column name="USERPHONE" />
+        </property>
+        <property name="userBirth" type="java.util.Date">
+            <column name="USERBIRTH" />
+        </property>
+        <property name="userMail" type="java.lang.String">
+            <column name="USERMAIL" />
+        </property>
+        <property name="userAddr" type="java.lang.String">
+            <column name="USERADDR" />
+        </property>
+    </class>
+</hibernate-mapping>

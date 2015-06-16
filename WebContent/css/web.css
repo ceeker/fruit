@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+#control_bar{
+	width:240px;height:550px;float:left; margin-left:5px; box-shadow:1px 1px 1px  gray;
+	}
+#view_block{width:680px;height:550px;float:left; margin-left:5px; }
+
+#accordion{font-size:14px; padding-right:10px;}
+#accordion div ul li{font-size:12px; border-bottom:2px #CCCCCC solid; line-height:32px; list-style-type:none;
+}
+#accordion div ul li a:hover{font-size:14px; color:#036; text-decoration:none;
+}
+
+iframe{width:680px;height:500px;border:none;}
+
+.main{width:680px;height:500px; margin:0 auto;}
+#main_left{width:300px;margin-left:10px; float:left; box-shadow:0px 0px 1px gray;}
+#main_right{width:360px;height:300px; float:right; margin-right:0px;}

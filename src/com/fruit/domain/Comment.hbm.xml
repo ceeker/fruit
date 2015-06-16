@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-8-7 10:30:01 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Comment" table="COMMENT">
+        <id name="commentId" type="java.lang.String">
+            <column name="COMMENTID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="commentVeg" class="com.fruit.domain.Vegetable" fetch="join" lazy="false" cascade="all">
+            <column name="COMMENTVEG" />
+        </many-to-one>
+        <many-to-one name="commentUser" class="com.fruit.domain.User" fetch="join" lazy="false" cascade="all">
+            <column name="COMMENTUSER" />
+        </many-to-one>
+        <property name="commentInfo" type="java.lang.String">
+            <column name="COMMENTINFO" />
+        </property>
+        <property name="commentScore" type="float">
+            <column name="COMMENTSCORE" />
+        </property>
+        <property name="visible" type="int">
+            <column name="VISIBLE" default="1" />
+        </property>
+        <property name="commentDate" type="java.util.Date">
+            <column name="COMMENTDATE" />
+        </property>
+    </class>
+</hibernate-mapping>

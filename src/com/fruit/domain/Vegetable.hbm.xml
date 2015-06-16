@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-7-26 17:41:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Vegetable" table="VEGETABLE" >
+        <id name="vegetableID" type="java.lang.String" >
+            <column name="VEGETABLEID"  />
+            <generator class="assigned" />
+        </id>
+        <property name="vegetableName" type="java.lang.String">
+            <column name="VEGETABLENAME" />
+        </property>
+        <property name="vegetablePrice" type="float">
+            <column name="VEGETABLEPRICE" />
+        </property>
+        <property name="vegetableInfo" type="java.lang.String">
+            <column name="VEGETABLEINFO" />
+        </property>
+        <property name="vegetableCatagory" type="java.lang.String">
+            <column name="VEGETABLECATAGORY" />
+        </property>
+        <property name="isRecommend" type="int">
+            <column name="ISRECOMMEND" />
+        </property>
+        <property name="vegetableKeyWords" type="java.lang.String">
+            <column name="VEGETABLEKEYWORDS" />
+        </property>
+        <property name="vegetableUnit" type="java.lang.String">
+            <column name="VEGETABLEUNIT" />
+        </property>
+        <list name="vegetableInfoPicAddr" inverse="false" table="VEGETABLE_INFO_PIC" lazy="false" cascade="all">
+            <key>
+                <column name="VEGETABLEID" />
+            </key>
+            <list-index></list-index>
+            <element type="java.lang.String">
+                <column name="VEGETABLEINFOPICADDR" />
+            </element>
+        </list>
+        <property name="vegetableQuantity" type="int">
+            <column name="VEGETABLEQUANTITY" />
+        </property>
+        <property name="vegetableDiscount" type="float">
+            <column name="VEGETABLEDISCOUNT" />
+        </property>
+       <property name="vegetableCommentCount" type="long">
+       	<column name="VEGETABLECOMMENTCOUNT" default="0"></column>
+       
+       </property>
+       <property name="vegetableSaleCount" type="long">
+       	<column name="VEGETABLESALECOUNT" default="0"></column>
+       
+       </property>
+        <list name="vegetablePicAddr" inverse="false" table="VEGETABLE_PIC" lazy="false" cascade="all" >
+            <key>
+                <column name="VEGETABLEID" />
+            </key>
+            <list-index ></list-index>
+            <element type="java.lang.String">
+                <column name="VEGETABLEPICADDR" />
+            </element>
+        </list>
+    </class>
+</hibernate-mapping>

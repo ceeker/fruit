@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<!--配置struts的开发模式为false  -->
+<constant name="struts.devMode" value="false"></constant>
+<!--是否允许动态方法调用，设置为可以  -->
+<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+<!--配置国际化资源文件  -->
+<constant name="struts.custom.i18n.resources" value="mess"></constant>
+<!--配置上传图片的缓存文件路径  -->
+<!-- <constant name="struts.multipart.saveDir" value="D:\"></constant> -->
+<!--默认包为abc  -->	
+<package name="abc" extends="struts-default">
+	<interceptors>
+		<interceptor name="loginInter" class="com.fruit.interceptor.LoginIntetceptor">
+			<param name="name">login拦截器</param>
+			<param name="includeMethods">userRegist</param>
+		</interceptor>
+	
+	</interceptors>
+		
+		
+<!--管理员相关的Action -->
+	<!--管理员登录  -->
+	<action name="adminLoginAction" class="adminLoginAction" method="adminLogin">
+			<result name="input">/backstage/login_manager.jsp</result>
+			<result name="ok">/backstage/fruit_manager.jsp</result>	
+	</action>
+	<!--查找所有的管理员  -->
+	<action name="findAllAdminsAction" class="findAllAdminsAction" method="findAllAdmins">
+	    	<result name="ok">/backstage/adminlist.jsp</result>
+	    	
+	</action>
+	 <!--根据管理员的ID查找管理员  -->
+	 <action name="findAdminByIdAction" class="findAdminByIdAction" method="findAdminById">
+	    	<result name="ok">/WEB-INF/view/showAdmin.jsp</result>
+	    	<result name="fail">/WEB-INF/view/showAdmin.jsp</result>
+	    	<result name="error">/WEB-INF/view/error.jsp</result>
+	 </action>
+	 <!--更新管理员基本信息  -->
+	 <action name="updateAdminInfoAction" class="updateAdminInfoAction" method="updateAdminInfo">
+	    	<result name="ok">/WEB-INF/view/updateAdminInfoSuccess.jsp</result>
+	    	<result name="fail">/WEB-INF/view/updateAdminInfoFail.jsp</result>
+	    	<result name="error">/WEB-INF/view/error.jsp</result>
+	 </action>
+	 <!--管理员查找所有的用户  -->
+	 <action name="findAllUsers" class="findAllUsersAction" method="findAllUsers">
+	        <result name="ok">/backstage/listAllUsers.jsp</result>
+	 </action>
+	 <!--管理员删除用户  -->
+	 <action name="deleteUserById" class="deleteUserByIdAction" method="deleteUserById">
+	        <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findAllUsers</param>
+	    	</result>
+	 </action>
+	 
+	 <!-- 后补查询未处理订单 -->
+	    <action name="findUnDealBook" class="adminBookProviderAction" method="findUnDealBook">
+	    <result name="ok">/backstage/unDealBook.jsp</result>
+	    </action>
+	    <!-- 后补确认订单 -->
+	    <action name="activeBookById" class="adminBookProviderAction" method="activeBookById">
+	    </action>
+	    <!-- 后补查询所有已处理订单 -->
+	    <action name="findAllBooks" class="adminBookProviderAction" method="findAllBooks">
+	    <result name="ok">/backstage/dealedBook.jsp</result>
+	    </action>
+	 <!-- 后补 查询所有公告 -->
+	   <action name="queryAllMessage" class="messageProviderAction" method="queryAllMessage">
+	    <result name="ok">/backstage/messagelist.jsp</result>
+	    </action>
+	   <!-- 后补查询某个公告 -->
+	   <action name="findMessageById" class="messageProviderAction" method="findMessageById">
+	    <result name="ok">/backstage/messageAlter.jsp</result>
+	    </action>
+	    <!-- 后补 删除某个公告 -->
+	     <action name="deleteMessageById" class="messageProviderAction" method="deleteMessageById">
+	         <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">queryAllMessage</param>
+	    	</result>
+	    </action>
+	    <!-- 后补修改某个公告 -->
+	    <action name="updateMessageById" class="messageProviderAction" method="updateMessageById">
+	         <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">queryAllMessage</param>
+	    	</result>
+	    </action>
+	     <!-- 后补添加公告 -->
+	    <action name="insertMessage" class="messageProviderAction" method="insertMessage">
+	         <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">queryAllMessage</param>
+	    	</result>
+	    </action>
+	    
+	    <!-- 后补查询所有用户留言 -->
+	    <action name="findAllUserMessage" class="adminUserMessageProviderAction" method="findAllUserMessage">
+	    <result name="ok">/backstage/userMessageList.jsp</result>
+	    </action>
+	    <!-- 后补删除某个用户留言 -->
+	    <action name="deleteUserMessageById" class="adminUserMessageProviderAction" method="deleteUserMessageById">
+	    	<result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">findAllUserMessage</param>
+	    	</result>
+	    </action>
+	    <!-- 查询某个用户留言 -->
+	    <action name="findUserMessageById" class="adminUserMessageProviderAction" method="findUserMessageById">
+	    <result name="ok">/backstage/userMessageAlter.jsp</result>
+	    </action>
+	    <!-- 修改某个用户留言 -->
+	    <action name="updateUserMessageById" class="adminUserMessageProviderAction" method="updateUserMessageById">
+	    <result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">findUserMessageById</param>
+	    	</result>
+	    </action>
+	    
+	 
+	 
+	 
+	 <!-- 查询所有广告-->
+	 <action name="getAllAd" class="adminAdProviderAction" method="getAllAd">
+	    	<result name="ok">/backstage/adlist.jsp</result>
+	 </action>
+	 <!-- 根据id查询广告-->
+	 <action name="admingetAdById" class="adminAdProviderAction" method="getAdById">
+	   		 <result name="ok">/backstage/alterAd.jsp</result>
+	 </action>
+	 <!-- 更新广告-->
+	 <action name="insertAd" class="adminAdProviderAction" method="insertAd">
+	    	<result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">getAllAd</param>
+	    	</result>
+	 </action>
+	 
+	<!--管理员根据ID删除蔬菜  -->
+	 <action name="deleteVegetableByIdAction" class="deleteVegetableByIdAction" method="deleteVegetableById">
+	    	<result name="ok">/fruit_page/commodities.jsp</result>
+	    	<result name="fail">/WEB-INF/view/updateAdminInfoFail.jsp</result>
+	    	<result name="error">/WEB-INF/view/error.jsp</result>
+	 </action>
+	 <!--管理员根据ID查找蔬菜  -->
+	 <action name="findVegetableByIdAction" class="findVegetableByIdAction" method="findVegetableById">
+	    	<result name="ok">/fruit_page/commodities.jsp</result>
+	 </action>
+	 <!--管理员根据类别查找所有的蔬菜  -->
+	 <action name="findVegetablesByCat" class="adminVegetableProviderAction" method="findVegetablesByCat">
+	    	<result name="ok">/fruit_page/commodities.jsp</result>
+	 </action>
+	 <!--管理员根据销量查找蔬菜  -->
+	 <action name="findVegetablesBySale"  class="adminVegetableProviderAction" method="findVegetablesBySale">
+	     	<result name="ok">/fruit_page/commodities.jsp</result>
+	 </action>
+	 <!--管路员随机查找八个打折蔬菜，首页显示  -->
+	 <action name="findEightDiscountVeg" class="adminVegetableProviderAction" method="findEightDisCountVeg">
+	    	<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 <!--管理员随机查找八个推荐蔬菜，首页显示  -->   
+	 <action name="findEightRecommandVeg" class="adminVegetableProviderAction" method="findEightRecommandVeg">
+	   		<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 <!--管理员查找所有的滚动栏图片  -->   
+	 <action name="findAllGalleryPics" class="galleryPicProviderAction" method="findAllGalleryPics">
+	   		<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 <!--管理员查找热键  -->
+	 <action name="findHotKeyWords" class="adminVegetableProviderAction" method="findHotKeyWords">
+	   		<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 <!--管理员根据参数查找热键  -->
+	 <action name="findHotKeysRefParam" class="adminVegetableProviderAction" method="findHotKeysRefParam">
+	    	<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 <!--管理员根据参数查找所有的热键  -->
+	 <action name="findAllHotKeysRefParam" class="adminVegetableProviderAction" method="findAllHotKeysRefParam">
+	   		<result name="ok">/fruit_page/index.jsp</result>
+	 </action>
+	 
+	 <!-- 后补 删除某个蔬菜 -->
+	    <action name="adminDeleteVegetableById" class="adminVegetableProviderAction" method="deleteVegetableById">
+	    	<result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">adminVegetableProvider</param>
+	    	</result>
+	    	
+	    </action>
+
+	<!-- 后补 查询所有蔬菜 -->
+	    <action name="adminVegetableProvider" class="adminVegetableProviderAction" method="findAllVegetables">
+	    <result name="ok">/backstage/vegetablelist.jsp</result>
+	    
+	    </action>
+
+    <!-- 后补 查询单个蔬菜 -->
+	    <action name="findVegetableById" class="adminVegetableProviderAction" method="findVegetableById">
+	    <result name="ok">/backstage/vegetableAlter.jsp</result>
+	    </action>
+	<!-- 后补添加单个蔬菜 -->
+	    <action name="insertIntoVegetable" class="adminVegetableProviderAction" method="insertIntoVegetable">
+	    <result name="ok" type="redirectAction">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById?vegetableId=${vegetable.vegetableID}</param>
+	    	</result>	
+	    </action>
+	 <!-- 后补 更新单个蔬菜基本信息 -->
+	    <action name="updateVegetableById" class="adminVegetableProviderAction" method="updateVegetableById">
+	   		<result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">adminVegetableProvider</param>
+	    	</result>	    	
+	    </action>
+	 <!-- 后补 根据蔬菜id查询该蔬菜的所有评论 -->
+	 <action name="adminCommentsByVegetableId" class="commentProviderAction" method="adminCommentsByVegetableId">
+	    	<result name="ok">/backstage/commentlist.jsp</result>
+	 </action>
+	 <!-- 后补 将某个评论置为不可见 -->
+	 <action name="disVisiable" class="commentProviderAction" method="disVisiable"></action>
+	    
+	
+	    
+	    <!-- 后补 更新单个蔬菜图片 -->
+	    <action name="insertOrUpdateVegetablePic1" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic1">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	  <action name="insertOrUpdateVegetablePic2" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic2">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	     <action name="insertOrUpdateVegetablePic3" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic3">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic4" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic4">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	      <action name="insertOrUpdateVegetablePic5" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic5">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+ 
+   <action name="insertOrUpdateVegetablePic6" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic6">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic7" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic7">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic8" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic8">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic9" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic9">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic10" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic10">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	      <action name="insertOrUpdateVegetablePic11" class="findVegetableByIdAction" method="insertOrUpdateVegetablePic11">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    
+	 <action name="insertIntoVegetableInfoPicAdddr2" class="findVegetableByIdAction" method="insertIntoVegetableInfoPicAdddr2">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    <action name="insertIntoVegetableInfoPicAdddr3" class="findVegetableByIdAction" method="insertIntoVegetableInfoPicAdddr3">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	    <action name="insertIntoVegetableInfoPicAdddr4" class="findVegetableByIdAction" method="insertIntoVegetableInfoPicAdddr4">
+	    <result name="ok" type="chain">
+	    	<param name="namespace">/abc</param>
+	    	<param name="actionName">findVegetableById</param>
+	    	</result>
+	    </action>
+	 <!-- 后补查询所有滚动栏图片 -->
+	     <action name="adminAllGalleryPics" class="galleryPicProviderAction" method="findAllGalleryPics">
+	      <result name="ok">/backstage/gallerylist.jsp</result>
+	     </action>
+	    <!-- 后补根据id查询某个滚动栏图片 -->
+	    <action name="findGalleryPicById" class="galleryPicProviderAction" method="findGalleryPicById">
+	      <result name="ok">/backstage/alterGallery.jsp</result>
+	     </action>
+	     <!-- 后补根据id查询更新某个滚动栏基本信息 -->
+	     <action name="updateGalleryPicById" class="galleryPicProviderAction" method="updateGalleryPicById">
+	       <result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">findGalleryPicById</param>
+	       </result>
+	     </action>
+	     <!-- 后补根据id查询更新某个滚动栏图片 -->
+	     <action name="updateGalleryPic" class="galleryPicProviderAction" method="updateGalleryPic">
+	       <result name="ok" type="chain">
+	    		<param name="namespace">/abc</param>
+	    		<param name="actionName">findGalleryPicById</param>
+	       </result>
+	     </action>
+	 
+	    
+	    
+	    
+	    
+	    
+<!--用户相关Action  -->
+		<!--用户登录  -->	
+	   	<action name="userLogin" class="userProviderAction" method="userLogin"></action>
+	   	<!--用户计算购物车蔬菜的数量  -->
+		<action name="userCountCart" class="userVegetableProviderAction" method="countCart"></action>
+		<!--用户查找所有的自己留言  -->
+		<action name="userMessageAction" class="userMessageAction" method="findMyUserMessages">
+				<result name="ok">/WEB-INF/view/showMessage.jsp</result>	
+		</action>
+		<!--用户找回密码  -->
+		<action name="recover" class="recoverAction" method="recover">
+				<result name="ok">/fruit_page/index.jsp</result>
+				<result name="fail">/WEB-INF/view/recoverPasswordFail.jsp</result>
+		</action>
+		<!--注册时候，判断用户名是否存在  -->
+		<action name="isExist" class="userProviderAction" method="isExist"></action>
+		<!--注册时候，判断邮箱是否存在  -->
+		<action name="mailExist" class="userProviderAction" method="mailExist"></action>
+		<!--用户注册  -->
+		<action name="userRegist" class="userProviderAction" method="userRegist">
+				<result name="ok">/fruit_page/regflash.jsp</result>
+				<!--引用拦截器  -->
+				
+		</action>
+		<!--用户查询自己的购物车  -->
+		<action name="findAllCart" class="userVegetableProviderAction" method="findAllCart">
+				<result name="ok">/fruit_page/cart.jsp</result>
+		</action>
+		<!--用户删除购物车  -->
+		<action name="deleteCart" class="userVegetableProviderAction" method="deleteCart"></action>
+		<!--用户注销  -->
+		<action name="userLogout" class="userProviderAction" method="userLogout">
+				<result name="ok" type="redirect">/fruit_page/index.jsp</result>
+		</action>
+		<!--用户查看具体的广告  -->
+		<action name="getAdById" class="adminAdProviderAction" method="getAdById">
+			<result name="ok">/fruit_page/index.jsp</result>
+		</action>
+		<!--所有用户留言分页  -->
+		<action name="userMessagePage" class="userMessageProviderAction" method="page">
+				<param name="hql">from UserMessage as um order by um.userMessageDate desc</param>
+				
+				<result name="ok" type="dispatcher">/fruit_page/usermessage.jsp</result>
+		</action>
+		<!--用户留言  -->
+		<action name="insertUserMessage" class="userMessageProviderAction" method="insertUserMessage">
+				<result name="ok" type="chain">
+					<param name="actionName">userMessagePage</param>
+					<param name="namespace">/abc</param>
+				</result>
+		</action>
+		<!--管理员 公告分页 -->
+		<action name="adminMessagePage" class="adminMessageProviderAction" method="page">
+				<param name="hql">from Message</param>
+				<result name="ok">/fruit_page/notice.jsp</result>
+		</action>
+		<!--用户查看个人信息  -->
+		<action name="findUserInfoById" class="userProviderAction" method="findUserInfoById">
+				<result name="ok">/fruit_page/personcenter.jsp</result>
+				<result name="fail" type="redirect">/fruit_page/index.jsp</result>
+		</action>
+	</package>
+	
+	
+	
+	
+<!--涉及到json的Action  -->
+<!--默认包是bcd，继承自json-default  -->
+	<package name="bcd" extends="json-default">
+		<!--用户将购物车的蔬菜提交订单  -->
+		<action name="book" class="userVegetableProviderAction" method="book">
+				<result name="ok" type="redirect">/fruit_page/index.jsp</result>
+		</action>
+		<!--根据关键字查找蔬菜  -->	
+		<action name="findVegetableByKeyWord" class="userVegetableProviderAction" method="findVegetableByKeyWord">
+				<result name="ok">/fruit_page/productslist.jsp</result>
+		</action>
+		<!--根据关键字查找蔬菜们，以瀑布流展示  -->
+		<action name="findVegetableFlow" class="userVegetableProviderAction" method="findVegetableFlow"></action>
+		<!--根据销量查找蔬菜  -->
+		<action name="findSaleVegetables" class="userVegetableProviderAction" method="findSaleVegetables">
+				<result name="ok">/fruit_page/productslistsale.jsp</result>
+		</action>
+		<!--根据销量查找蔬菜，瀑布流的方式展示  -->
+		<action name="findSaleVegetablesFlow" class="userVegetableProviderAction" method="findSaleVegetablesFlow"></action>
+		<!--查找所有的蔬菜  -->
+		<action name="findFreshVegetables" class="userVegetableProviderAction" method="findFreshVegetables">
+				<result name="ok">/fruit_page/productslistfresh.jsp</result>
+		</action>
+		<!--查找所有的蔬菜，以瀑布流的方式展示  -->	
+		<action name="findFreshVegetablesFlow" class="userVegetableProviderAction" method="findFreshVegetablesFlow"></action>
+		<!--查找打折蔬菜  -->
+		<action name="findDiscountVegetables" class="userVegetableProviderAction" method="findDiscountVegetables">
+				<result name="ok">/fruit_page/productslistdiscount.jsp</result>
+		</action>
+		<!--查找打折蔬菜，一瀑布流的形式展示  -->
+		<action name="findDiscountVegetablesFlow" class="userVegetableProviderAction" method="findDiscountVegetablesFlow"></action>
+		<!--查找相关蔬菜的评论  -->
+		<action name="getCommentsByVegetableId" class="commentProviderAction" method="getCommentsByVegetableId"></action>
+		<!--添加购物车  -->
+		<action name="insertIntoCart" class="userVegetableProviderAction" method="insertIntoCart"></action>
+		<!--查找相关用户的评论  -->
+		<action name="getCommentsByUserId" class="commentProviderAction" method="getCommentsByUserId"></action>
+		<!--更新用户地址  -->
+		<action name="updateAddr" class="userProviderAction" method="updateAddr"></action>
+		<!--更新用户的电话  -->
+		<action name="updatePhone" class="userProviderAction" method="updatePhone"></action>
+		<!--更新用户email  -->
+		<action name="updateMail" class="userProviderAction" method="updateMail"></action>
+		<!--更新用户密码  -->
+		<action name="userUpdatePassword" class="userProviderAction" method="userUpdatePassword"></action>
+		<!--用户获取自己的评价  -->
+		<action name="getCommentsByUserId" class="commentProviderAction" method="getCommentsByUserId"></action>
+		<!--用户查看自己的订单  -->
+		<action name="findBook" class="userVegetableProviderAction" method="findBook"></action>
+		<!--用户插入评论  -->
+		<action name="insertComment" class="commentProviderAction" method="insertComment"></action>
+		<!--用户提交订单  -->
+		<action name="book" class="userVegetableProviderAction" method="book">
+			<result name="ok">/fruit_page/configmenu.jsp</result>
+		</action>
+	</package>
+	
+
+
+
+</struts>

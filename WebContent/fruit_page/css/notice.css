@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+#noticeList {
+	width: 900px;
+	height: 600px;
+	margin: 0 auto;
+	border: 2px #ededed solid;
+}
+#noticeBar {
+	display: block;
+	width: 160px;
+	height: 36px;
+	background-color: #693;
+	line-height: 30px;
+	text-align: center;
+	text-height: 30px;
+	font-size: 18px;
+	padding-top:5px;
+	color:#FFF;
+	letter-spacing:5px;
+	
+}
+
+	
+#contentList td{ height:36px; font-size:14px; font-family:Georgia, "Times New Roman", Times, serif; text-align:center;}
+
+div.noticeCont{ display:none;}
+a.noticetitle{ color:#333; position:relative;}
+a.noticetitle:hover{ background-color:#CCC; font-weight:500;}
+a.noticetitle:hover div.noticeCont{display:block;z-index:1; position:absolute; left:100px; top:0px; width:560px; height:auto; background:#fff; box-shadow:0 5px 2px -3px rgba(0,0,0,.1); border:1px #dedede solid; padding:10px 5px 10px 5px; line-height:26px; text-align:left;}

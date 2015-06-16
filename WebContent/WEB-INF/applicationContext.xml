@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+<!--配置sessionfactory  -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+<!--这样的活，将hibernate配置文件采用单独隔开的方式，采用配置文件路径的方式将其添加到sessfactory 中  -->
+<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+		<!--  <property name="dataSource" ref="dataSource"/> -->
+		<property name="mappingResources">
+			<list>
+			<value>com/fruit/domain/GalleryPic.hbm.xml</value>
+				<value>com/fruit/domain/User.hbm.xml</value>
+				<value>com/fruit/domain/Admin.hbm.xml</value>
+				<value>com/fruit/domain/Vegetable.hbm.xml</value>
+				<value>com/fruit/domain/Message.hbm.xml</value>
+				<value>com/fruit/domain/UserMessage.hbm.xml</value>
+				<value>com/fruit/domain/Advertisement.hbm.xml</value>	
+				<value>com/fruit/domain/Book.hbm.xml</value>
+				<value>com/fruit/domain/Comment.hbm.xml</value>
+				<value>com/fruit/domain/Cart.hbm.xml</value>
+				
+			</list>
+		</property>
+		
+	</bean>
+	  
+<!--配置事务  -->
+	 <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+<!--管理员相关Action  -->
+	<!--管理员登录  -->
+	<bean id="adminLoginAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<!--管理员查询所有的管理员  -->
+	<bean id="findAllAdminsAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<!--管理员查询特定的管理员  -->
+	<bean  id="findAdminByIdAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<!--管理员更新个人信息  -->
+	<bean  id="updateAdminInfoAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<!-- 查看所有用户 -->
+	<bean id="findAllUsersAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	   <!-- 删除某个用户 -->
+	<bean  id="deleteUserByIdAction" class="com.fruit.controller.AdminProviderAction">
+		<property name="adminService" ref="adminService"></property>
+	
+	</bean>
+	
+	<!--管理员删除蔬菜  -->
+	<bean id="deleteVegetableByIdAction" class="com.fruit.controller.AdminVegetableProviderAction">
+		<property name="adminVegetableService" ref="adminVegetableService"></property>
+	</bean>
+	<!--根据ID查找蔬菜  -->
+	<bean id="findVegetableByIdAction" class="com.fruit.controller.AdminVegetableProviderAction">
+		<property name="adminVegetableService" ref="adminVegetableService"></property>
+	</bean>
+	<!--通用管理员蔬菜模块  -->
+	<bean id="adminVegetableProviderAction" class="com.fruit.controller.AdminVegetableProviderAction">
+		<property name="adminVegetableService" ref="adminVegetableService"></property>
+	</bean>
+	<!--滚动栏图片  -->
+	<bean id="galleryPicProviderAction" class="com.fruit.controller.GalleryPicProviderAction">
+		<property name="galleryService" ref="galleryService"></property>
+	</bean>
+	<!--通用管理员模块  -->
+	<bean id="adminAdProviderAction" class="com.fruit.controller.AdminAdProviderAction">
+		<property name="adminAdService" ref="adminAdService"></property>
+	</bean>
+	<!--通用评论模块  -->
+	<bean id="commentProviderAction" class="com.fruit.controller.CommentProviderAction">
+		<property name="commentService" ref="commentService"></property>
+	</bean>
+	<!--通用管理员公告模块  -->
+	<bean id="adminMessageProviderAction" class="com.fruit.controller.AdminMessageProviderAction">
+		<property name="adminMessageService" ref="adminMessageService"></property>
+		<property name="pageService" ref="pageService"></property>
+	</bean>
+	
+	<bean id="messageProviderAction" class="com.fruit.controller.AdminMessageProviderAction">		
+		<property name="adminMessageService" ref="adminMessageService"></property>
+	</bean>
+	
+	
+	<bean id="adminBookProviderAction" class="com.fruit.controller.AdminBookProviderAction">
+		<property name="adminBookService" ref="adminBookService"></property>
+	</bean>
+	
+	<bean id="adminUserMessageProviderAction" class="com.fruit.controller.AdminUserMessageProviderAction">
+		<property name="adminUserMessageService" ref="adminUserMessageService"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+<!--用户相关Action  -->
+	<!--通用用户模块  -->
+	<bean id="userProviderAction" class="com.fruit.controller.UserProviderAction" scope="request">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<!--通用用户蔬菜模块  -->
+	<bean id="userVegetableProviderAction" class="com.fruit.controller.UserVegetableProviderAction">
+		<property name="userVegetableService" ref="userVegetableService"></property>
+	</bean>
+	<!--通用用户注册模块  -->
+	<bean id="userRegistAction" class="com.fruit.controller.UserRegistAction"></bean>
+	<!--通用用户找回密码模块  -->
+	<bean id="recoverAction" class="com.fruit.controller.RecoverPasswordAction">
+		<property name="recoverPasswordService" ref="recoverPasswordService"></property>
+	</bean>
+	<!--通用用户留言模块  -->
+	<bean id="userMessageProviderAction" class="com.fruit.controller.UserMessageProviderAction" scope="request">
+		<property name="userMessageService" ref="userMessageService"></property>
+		<property name="pageService" ref="pageService"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+<!--管理员相关Dao  -->
+	<!--通用管理员dao模块  -->
+	<bean id="adminDao" class="com.fruit.dao.AdminDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用管理员蔬菜模块  -->
+	<bean id="adminVegetableDao" class="com.fruit.dao.AdminVegetableDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用滚动栏图片模块  -->
+	<bean id="galleryDao" class="com.fruit.dao.GalleryDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用管管理员广告模块  -->
+	<bean id="adminAdDao" class="com.fruit.dao.AdminAdDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用评论模块  -->
+	<bean id="commentDao" class="com.fruit.dao.CommentDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用管理员公告模块  -->
+	<bean id="adminMessageDao" class="com.fruit.dao.AdminMessageDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	
+	<bean id="adminBookDao" class="com.fruit.dao.AdminBookDao">
+	   <property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<bean id="adminUserMessageDao" class="com.fruit.dao.AdminUserMessageDao">
+	   <property name="springUtil" ref="springUtil"></property>
+	</bean>
+	
+	
+	
+<!--用户相关Dao  -->
+	<!--通用用户dao模块  -->
+	<bean id="userDao" class="com.fruit.dao.UserDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用用户留言模块  -->
+	<bean id="userMessageDao" class="com.fruit.dao.UserMessageDao">
+		 <property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用找回密码模块  -->
+	<bean id="recoverPasswordDao" class="com.fruit.dao.RecoverPasswordDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用用户蔬菜模块  -->
+	<bean id="userVegetableDao" class="com.fruit.dao.UserVegetableDao">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	<!--通用分页模块  -->
+	<bean id="pageDao" class="com.fruit.imp.PageDaoImpl">
+		<property name="springUtil" ref="springUtil"></property>
+	</bean>
+	
+	
+<!-- 配置数据库访问类结束 --> 
+<!-- 配置服务类开始  -->
+	
+<!--管理员相关service  -->
+	<!--通用管理员service  -->
+	<bean id="adminService" class="com.fruit.service.AdminService">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<!--通用管理员蔬菜服务  -->
+	<bean id="adminVegetableService" class="com.fruit.service.AdminVegetableService">
+		<property name="adminVegetableDao" ref="adminVegetableDao"></property>
+	</bean>
+	<!--滚动栏服务  -->
+	<bean id="galleryService" class="com.fruit.service.GalleryService">
+		<property name="galleryDao" ref="galleryDao"></property>
+	</bean>
+	<!--管理员广告服务  -->
+	<bean id="adminAdService" class="com.fruit.service.AdminAdService">
+		<property name="adminAdDao" ref="adminAdDao"></property>
+	</bean>
+	<!--评论服务  -->
+	<bean id="commentService" class="com.fruit.service.CommentService">
+		<property name="commentDao" ref="commentDao"></property>
+	</bean>
+	<!--管理员公告服务  -->
+	<bean id="adminMessageService" class="com.fruit.service.AdminMessageService">
+		<property name="adminMessageDao" ref="adminMessageDao"></property>
+	</bean>
+	<bean id="adminBookService" class="com.fruit.service.AdminBookService">
+	  <property name="adminBookDao" ref="adminBookDao"></property>
+	</bean>
+	<bean id="adminUserMessageService" class="com.fruit.service.AdminUserMessageService">
+	  <property name="adminUserMessageDao" ref="adminUserMessageDao"></property>
+	</bean>
+	
+	
+	
+<!--用户相关service  -->
+	<!--用户服务类  -->
+	<bean id="userService" class="com.fruit.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<!--用户留言  -->
+	<bean id="userMessageService" class="com.fruit.service.UserMessageService">
+	  	<property name="userMessageDao" ref="userMessageDao"></property>
+    </bean>
+    <!--找回密码  -->
+   <bean id="recoverPasswordService" class="com.fruit.service.RecoverPasswordService">
+   		<property name="recoverPasswordDao" ref="recoverPasswordDao"></property>
+    </bean>
+    <!--用户蔬菜服务  -->
+   <bean id="userVegetableService" class="com.fruit.service.UserVegetableService">
+   		<property name="userVegetableDao" ref="userVegetableDao"></property>
+   </bean>
+   <!--分页  -->
+    <bean id="pageService" class="com.fruit.imp.PageServiceImpl">
+   		 <property name="pageDao" ref="pageDao"></property>
+    </bean>
+    
+    
+    
+    <!--配置util  -->
+	<bean id="springUtil" class="com.fruit.util.SpringUtil"></bean>
+	<!-- 配置服务类结束  -->
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-8-9 15:56:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Book" table="BOOK">
+        <id name="bookId" type="java.lang.String">
+            <column name="BOOKID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="bookVegetable" class="com.fruit.domain.Vegetable" fetch="join" cascade="all" lazy="false" >
+            <column name="BOOKVEGETABLE" />
+        </many-to-one>
+        <many-to-one name="bookUser" class="com.fruit.domain.User" fetch="join" cascade="all" lazy="false">
+            <column name="BOOKUSER" />
+        </many-to-one>
+        <property name="bookQuantity" type="int">
+            <column name="BOOKQUANTITY" />
+        </property>
+        <property name="bookDate" type="java.util.Date">
+            <column name="BOOKDATE" />
+        </property>
+        <property name="isConfirm" type="int">
+            <column name="ISCONFIRM" default="0" />
+        </property>
+        <property name="isVisible" type="int">
+            <column name="ISVISIBLE" default="1" />
+        </property>
+       <property name="bookAddr" type="string">
+       	<column name="BOOKADDR" />
+       </property>
+       <property name="bookPhone" type="string">
+       	<column name="BOOKPHONE"></column>
+       </property>
+    </class>
+</hibernate-mapping>

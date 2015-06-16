@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-4 19:06:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Message" table="MESSAGE">
+        <id name="messageId" type="java.lang.String">
+            <column name="MESSAGEID" />
+            <generator class="assigned" />
+        </id>
+        <property name="messageTitle" type="java.lang.String">
+            <column name="MESSAGETITLE" />
+        </property>
+        <many-to-one name="messageAdmin" class="com.fruit.domain.Admin" fetch="join" cascade="all" lazy="false">
+            <column name="MESSAGEADMIN" />
+        </many-to-one>
+        <property name="messageContent" type="java.lang.String">
+            <column name="MESSAGECONTENT" />
+        </property>
+        <property name="messageDate" type="java.util.Date">
+            <column name="MESSAGEDATE" />
+        </property>
+    </class>
+</hibernate-mapping>

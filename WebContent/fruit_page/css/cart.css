@@ -1,0 +1,151 @@
+#content{
+	margin: 50px auto 80px auto;
+	border: 1px solid #d6d6d6;
+	border-radius: 10px;
+}
+#content h2{
+	padding: 0 30px;
+	overflow: hidden;
+}
+#content h2 img{
+	display: block;
+	float: left;
+}
+.time-now{
+	float: right;
+	width: 411px;
+	height: 70px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	background: url(../img/carting.jpg) no-repeat 0px 0px;
+}
+.empty-cart-box{
+	width: 500px;
+	margin: 50px auto 200px auto;
+	overflow: hidden;
+}
+.empty-cart-logo{
+	float: left;
+	width: 130px;
+}
+.empty-cart-go{
+	padding-top: 30px;
+	float: left;
+}
+.empty-cart-go strong{
+	font:700 16px/20px 'Microsoft YaHei',helvetica,tahoma,arial,sans-serif;
+	color:#333;
+}
+.empty-cart-go p{
+	font: 1.4em 'Microsoft YaHei',helvetica,tahoma,arial,sans-serif;
+	color: #666;
+	margin-bottom: 15px;
+}
+.empty-cart-go a{
+	color: #693;
+}
+.empty-cart-go a:hover{
+	text-decoration: underline;
+}
+.not-empty{
+	padding:0 30px 0 30px;
+}
+.cart-list{
+	width: 100%;
+}
+.cart-list thead{
+	background: #f1f1f1;
+	border-top: 1px solid #d6d6d6;
+}
+.cart-list th{
+	text-align: center;
+	font: 1.6em/40px 'Microsoft YaHei';
+	color: #111;
+}
+.cart-list tbody tr{
+	border-bottom: 1px #d6d6d6 dashed;
+}
+.cart-list-check,.cart-list-prv,.cart-list-now,.cart-list-total,.cart-list-operate{
+	text-align: center;
+}
+.count-num-box{
+	padding-left: 25px;
+}
+.cart-list-product .photo{
+	float: left;
+	display: block;
+	padding: 3px;
+	margin: 10px;
+	border: 1px solid #d6d6d6;
+	background: #fff;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+}
+.cart-list-product .photo img{
+	width: 100%;
+	display: block;
+}
+.cart-list-product .name{
+	width: 200px;
+	float: left;
+	padding:13px 10px; 
+	font: 14px/25px 'Microsoft YaHei';
+	color: #111;
+}
+.cart-list-product .name:hover{
+	text-decoration: underline;
+}
+.cart-list-prv .prv{
+	font: 14px/25px 'Microsoft YaHei';
+	color: #666;
+	text-decoration: line-through;
+}
+.cart-list-prv .discount,.cart-list-now strong{
+	font:bold 14px/25px 'Microsoft YaHei';
+	color: #333;
+}
+.cart-list-operate input{
+	font: 12px 'Microsoft YaHei';
+}
+.cart-list-total strong{
+	font:bold 16px/25px 'Microsoft YaHei';
+	color: #693;
+}
+.cart-submit{
+	margin: 30px 0;
+	width: 100%;
+	height: 50px;
+	background: url(../img/bg13.jpg) repeat-x left top;
+	overflow: hidden;
+}
+#cart-submit{
+	display: block;
+	float: right;
+	width: 152px;
+	height: 50px;
+	background: url(../img/152_50px172_50px.png) no-repeat 0px 0px;
+	border: none;
+	cursor: pointer;
+}
+#cart-submit:hover{
+	opacity: .7;
+	filter:alpha(opacity=70);
+}
+#cart-submit.disabled{
+	background-position: 0px -50px;
+}
+.cart-submit-total{
+	padding-right: 50px;
+	float: right;
+	font: 14px/50px 'Microsoft YaHei';
+	color:#666;
+}
+.cart-submit-total em{
+	color: #FD6D26;
+}
+.cart-submit-total strong{
+	color: #693;
+	font-size: 22px;
+	font-weight: bold;
+}

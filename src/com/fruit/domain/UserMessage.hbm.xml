@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-4 19:41:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.UserMessage" table="USERMESSAGE">
+        <id name="userMessageId" type="java.lang.String" >
+            <column name="USERMESSAGEID" />
+            <generator class="assigned" />
+        </id>
+        <property name="userMessageTitle" type="java.lang.String" not-null="true">
+            <column name="USERMESSAGETITLE" />
+        </property>
+        <property name="userMessageContent" type="java.lang.String">
+            <column name="USERMESSAGECONTENT" />
+        </property>
+        
+        <many-to-one name="userMessageAuthor" class="com.fruit.domain.User" fetch="join" cascade="all" lazy="false">
+            <column name="USERMESSAGEAUTHOR" />
+        </many-to-one>
+        <property name="isConfirm" type="int" >
+            <column name="ISCONFIRM"  default="0"/>
+        </property>
+        <property name="userMessageDate" type="java.util.Date">
+            <column name="USERMESSAGEDATE" />
+        </property>
+    </class>
+</hibernate-mapping>

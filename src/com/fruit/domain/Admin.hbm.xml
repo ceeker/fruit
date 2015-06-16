@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-4 19:06:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.fruit.domain.Admin" table="ADMIN">
+        <id name="adminId" type="java.lang.String" >
+            <column name="ADMINID" />
+            <generator class="assigned" />
+        </id>
+        <property name="adminName" type="java.lang.String">
+            <column name="ADMINNAME" />
+        </property>
+        <property name="adminPassword" type="java.lang.String">
+            <column name="ADMINPASSWORD" />
+        </property>
+        <property name="adminSex" type="java.lang.String">
+            <column name="ADMINSEX" />
+        </property>
+        <property name="adminBirth" type="java.util.Date">
+            <column name="ADMINBIRTH" />
+        </property>
+        <property name="adminRight" type="int" not-null="false">
+            <column name="ADMINRIGHT" />
+        </property>
+    </class>
+</hibernate-mapping>
